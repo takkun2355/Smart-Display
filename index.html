@@ -2,70 +2,334 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>SmartDisplayUI</title>
-    <link type="text/css" rel="stylesheet" href="style.css">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>Smart Display</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <main class="app">
+
+        <!-- ホーム -->
+        <section data-page="home" class="page home-page">
+
+            <!-- 上部 -->
+            <div class="home-top">
+
+                <!-- 時計・日付・天気 -->
+                <div class="time-area">
+                    <div id="clock" class="clock">12:34:56</div>
+                    <div id="date" class="date">9/29 (火)</div>
+
+                    <div class="weather-summary">
+                        <span id="temperature">25°C</span>
+                        <span id="weather">晴れ</span>
+                    </div>
+                </div>
+
+                <!-- 音楽 -->
+                <div class="music-card glass">
+                    <div class="music-label">MUSIC</div>
+
+                    <div class="music-title">
+                        Now Playing
+                    </div>
+
+                    <div class="music-artist">
+                        Artist
+                    </div>
+
+                    <div class="music-controls">
+                        <button>◀</button>
+                        <button class="play-button">▶</button>
+                        <button>▶</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 下部 -->
+            <div class="home-bottom">
+
+                <!-- 左 -->
+                <div class="left-column">
+
+                    <!-- 週間天気 -->
+                    <div class="weekly-weather">
+                        <div class="section-title" data-i18n="weeklyWeather">
+                            週間天気
+                        </div>
+
+                        <div class="weather-days">
+
+                            <div class="weather-day">
+                                <span>今日</span>
+                                <strong>☀</strong>
+                                <span class="high">25°</span>
+                                <span class="low">18°</span>
+                            </div>
+
+                            <div class="weather-day">
+                                <span>水</span>
+                                <strong>☀</strong>
+                                <span class="high">27°</span>
+                                <span class="low">19°</span>
+                            </div>
+
+                            <div class="weather-day">
+                                <span>木</span>
+                                <strong>☁</strong>
+                                <span class="high">24°</span>
+                                <span class="low">17°</span>
+                            </div>
+
+                            <div class="weather-day">
+                                <span>金</span>
+                                <strong>☂</strong>
+                                <span class="high">22°</span>
+                                <span class="low">16°</span>
+                            </div>
+
+                            <div class="weather-day">
+                                <span>土</span>
+                                <strong>☀</strong>
+                                <span class="high">26°</span>
+                                <span class="low">18°</span>
+                            </div>
+
+                            <div class="weather-day">
+                                <span>日</span>
+                                <strong>☀</strong>
+                                <span class="high">28°</span>
+                                <span class="low">20°</span>
+                            </div>
+
+                            <div class="weather-day">
+                                <span>月</span>
+                                <strong>☁</strong>
+                                <span class="high">25°</span>
+                                <span class="low">19°</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- カレンダー -->
+                    <div class="calendar-card glass">
+                        <div class="section-title" data-i18n="calendar">
+                            カレンダー
+                        </div>
+
+                        <div class="calendar-content">
+                            <div class="calendar-date">
+                                9月29日
+                            </div>
+
+                            <div class="calendar-event">
+                                <span>18:00</span>
+                                <span data-i18n="eventExample">
+                                    GCI Basic 講義
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 右 -->
+                <div class="news-card glass">
+                    <div class="section-title" data-i18n="news">
+                        ニュース
+                    </div>
+
+                    <div class="news-list">
+                        <div class="news-item">
+                            <span class="news-time">12:00</span>
+                            <span>ニュース記事サンプル</span>
+                        </div>
+
+                        <div class="news-item">
+                            <span class="news-time">11:30</span>
+                            <span>ニュース記事サンプル</span>
+                        </div>
+
+                        <div class="news-item">
+                            <span class="news-time">11:00</span>
+                            <span>ニュース記事サンプル</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 天気 -->
+        <section data-page="weather" class="page">
+            <h1 data-i18n="weather">天気</h1>
+        </section>
+
+        <!-- カレンダー -->
+        <section data-page="calendar" class="page">
+            <h1 data-i18n="calendar">カレンダー</h1>
+        </section>
+
+        <!-- ニュース -->
+        <section data-page="news" class="page">
+            <h1 data-i18n="news">ニュース</h1>
+        </section>
+
+        <!-- Web -->
+        <section data-page="web" class="page">
+            <h1 data-i18n="browser">ブラウザ</h1>
+        </section>
+
+        <!-- ツール -->
+        <section data-page="tool" class="page">
+            <h1 data-i18n="tools">ツール</h1>
+        </section>
+
+        <!-- 設定 -->
+        <section data-page="settings" class="page">
+            <section data-page="settings" class="page settings-page">
 
 
+                <h1 data-i18n="settings">
+                    設定
+                </h1>
 
+                <!-- 言語 -->
+                <div class="setting-item">
+                    <div>
+                        <div class="setting-title" data-i18n="language">
+                            言語
+                        </div>
 
+                        <div
+                            class="setting-description"
+                            data-i18n="languageDescription"
+                        >
+                            表示言語を変更します
+                        </div>
+                    </div>
 
+                    <select id="language-setting">
+                        <option value="ja">日本語</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
 
-    <div data-page="home">
-        <div class="top-left">
-            左上
-        </div>
+                <!-- 秒表示 -->
+                <div class="setting-item">
+                    <div>
+                        <div class="setting-title" data-i18n="showSeconds">
+                            秒数表示
+                        </div>
 
-        <div class="top-right">
-            右上
-        </div>
+                        <div
+                            class="setting-description"
+                            data-i18n="showSecondsDescription"
+                        >
+                            時計に秒数を表示します
+                        </div>
+                    </div>
 
-        <div class="bottom-left">
-            左下
-        </div>
+                    <label class="switch">
+                        <input
+                            type="checkbox"
+                            id="seconds-setting"
+                        >
+                        <span class="slider"></span>
+                    </label>
+                </div>
 
-        <div class="bottom-right">
-            右下
-        </div>
-    </div>
+                <!-- 24時間表記 -->
+                <div class="setting-item">
+                    <div>
+                        <div class="setting-title" data-i18n="twentyFourHour">
+                            24時間表記
+                        </div>
 
+                        <div
+                            class="setting-description"
+                            data-i18n="twentyFourHourDescription"
+                        >
+                            24時間制で時刻を表示します
+                        </div>
+                    </div>
 
-    <div data-page="weather">
-        <div class="left">
-            左
-        </div>
+                    <label class="switch">
+                        <input
+                            type="checkbox"
+                            id="twenty-four-hour-setting"
+                        >
+                        <span class="slider"></span>
+                    </label>
+                </div>
 
-        <div class="right">
-            右
-        </div>
-    </div>
+            </section>
+        </section>
+    </main>
 
-    <div data-page="calendar">
-        カレンダー
-    </div>
+    <!-- 下部ナビ -->
+    <nav class="bottom-nav glass">
 
-    <div data-page="news">
-        ニュース
-    </div>
-    
-    <div data-page="web">
-        ウェブ
-    </div>
-    
-    <div data-page="tool">
-        ツール
-    </div>
+        <button
+            data-page-target="home"
+            class="active"
+            data-i18n="home"
+        >
+            ホーム
+        </button>
 
-    <div class="bottom">
-        <button data-page-target="home">ホーム</button>
-        <button data-page-target="weather">天気</button>
-        <button data-page-target="calendar">カレンダー</button>
-        <button data-page-target="news">ニュース</button>
-        <button data-page-target="web">ウェブ</button>
-        <button data-page-target="tool">ツール</button>
-    </div>
-    
+        <button
+            data-page-target="weather"
+            data-i18n="weather"
+        >
+            天気
+        </button>
+
+        <button
+            data-page-target="calendar"
+            data-i18n="calendar"
+        >
+            カレンダー
+        </button>
+
+        <button
+            data-page-target="news"
+            data-i18n="news"
+        >
+            ニュース
+        </button>
+
+        <button
+            data-page-target="web"
+            data-i18n="browser"
+        >
+            ブラウザ
+        </button>
+
+        <button
+            data-page-target="tool"
+            data-i18n="tools"
+        >
+            ツール
+        </button>
+
+        <button
+            data-page-target="settings"
+            data-i18n="settings"
+        >
+            設定
+        </button>
+
+    </nav>
+
     <script src="js/pages.js"></script>
+    <script src="js/clock.js"></script>
+    <script src="js/settings.js"></script>
 </body>
 </html>

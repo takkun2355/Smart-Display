@@ -1,53 +1,1090 @@
-/* pages.js */
-.top-left {
-    position: absolute;
-    top: 20px;
-    left: 20px;
+/* =========================================================
+   Smart Display
+   ========================================================= */
+
+:root {
+    --text: #f4f7fb;
+    --text-secondary: rgba(244, 247, 251, 0.68);
+    --text-muted: rgba(244, 247, 251, 0.42);
+
+    --line: rgba(255, 255, 255, 0.12);
+
+    --high: #ff6b6b;
+    --low: #72a7ff;
 }
 
-.top-right {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+/* =========================================================
+   Reset
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
 }
 
-.center {
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    overflow: hidden;
+
+    color: var(--text);
+
+    font-family:
+        "Segoe UI",
+        "Noto Sans JP",
+        sans-serif;
+
+    background-color: #05080c;
+
+    background-image:
+        linear-gradient(
+            180deg,
+            rgba(4, 7, 12, 0.10) 0%,
+            rgba(4, 7, 12, 0.35) 35%,
+            rgba(4, 7, 12, 0.70) 72%,
+            rgba(3, 5, 9, 0.80) 100%
+        ),
+        linear-gradient(
+            110deg,
+            rgba(5, 10, 18, 0.35) 0%,
+            rgba(5, 10, 18, 0.03) 45%,
+            rgba(3, 7, 12, 0.42) 100%
+        ),
+        url("https://images.unsplash.com/photo-1654947926042-3b902bb4d67f?auto=format&fit=crop&fm=jpg&q=85&w=3000");
+
+    background-position:
+        center,
+        center,
+        center;
+
+    background-size:
+        cover,
+        cover,
+        cover;
+
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* 背景の雰囲気だけ追加 */
+body::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 50% 12%,
+            rgba(100, 145, 200, 0.50),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 8% 80%,
+            rgba(40, 90, 130, 0.40),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 92% 72%,
+            rgba(80, 55, 110, 0.30),
+            transparent 34%
+        );
+
+    z-index: 0;
+}
+
+/* =========================================================
+   App / Pages
+   ========================================================= */
+
+.app {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 1;
+}
+
+.page {
     position: absolute;
-    top: 50%;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    padding:
+        36px
+        42px
+        108px;
+
+    overflow: hidden;
+}
+
+.page[hidden] {
+    display: none;
+}
+
+/* =========================================================
+   Glass
+   ========================================================= */
+
+.glass {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(30, 38, 50, 0.90),
+            rgba(12, 17, 24, 0.10)
+        );
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.11);
+
+    box-shadow:
+        0 18px 50px rgba(0, 0, 0, 0.24),
+        inset 0 1px 0
+            rgba(255, 255, 255, 0.05);
+
+    backdrop-filter:
+        blur(22px)
+        saturate(125%);
+
+    -webkit-backdrop-filter:
+        blur(22px)
+        saturate(125%);
+}
+
+/* =========================================================
+   Home
+   ========================================================= */
+
+.home-page {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 28px;
+}
+
+.home-top {
+    position: relative;
+
+    flex: 0 0 38%;
+
+    min-height: 240px;
+}
+
+/* =========================================================
+   Clock
+   ========================================================= */
+
+.time-area {
+    position: absolute;
+
+    top: 4%;
     left: 50%;
+
+    transform: translateX(-50%);
+
+    text-align: center;
+
+    white-space: nowrap;
 }
 
-.bottom-left {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
+.clock {
+    font-size:
+        clamp(64px, 8vw, 126px);
+
+    font-weight: 300;
+
+    letter-spacing: 0.025em;
+
+    line-height: 0.95;
+
+    text-shadow:
+        0 8px 35px rgba(0, 0, 0, 0.35);
+
+    font-variant-numeric: tabular-nums;
 }
 
-.bottom-right {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
+.date {
+    margin-top: 14px;
+
+    color: var(--text-secondary);
+
+    font-size:
+        clamp(18px, 1.7vw, 26px);
 }
 
-.left {
-    position: absolute;
-    top: 50%;
-    left: 20px;
+.weather-summary {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 14px;
+
+    margin-top: 12px;
+
+    color: var(--text-secondary);
+
+    font-size:
+        clamp(17px, 1.5vw, 22px);
 }
 
-.right {
-    position: absolute;
-    top: 50%;
-    right: 20px;
+.weather-summary #temperature {
+    color: var(--text);
+
+    font-weight: 500;
 }
 
-.top {
-    position: absolute;
-    top: 20px;
+.weather-summary #weather {
+    color: var(--text-secondary);
 }
 
-.bottom {
+/* =========================================================
+   Music
+   ========================================================= */
+
+.music-card {
     position: absolute;
-    bottom: 20px;
+
+    top: 10px;
+    right: 0;
+
+    width: min(310px, 25vw);
+
+    padding: 22px;
+
+    border-radius: 20px;
+}
+
+.music-label {
+    color: var(--text-muted);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.16em;
+}
+
+.music-title {
+    margin-top: 12px;
+
+    font-size: 19px;
+
+    font-weight: 600;
+}
+
+.music-artist {
+    margin-top: 4px;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+}
+
+.music-controls {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-top: 22px;
+}
+
+.music-controls button {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    padding: 0;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    color: white;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        transform 0.18s ease;
+}
+
+.music-controls button:hover {
+    background:
+        rgba(255, 255, 255, 0.15);
+
+    transform: scale(1.05);
+}
+
+.music-controls .play-button {
+    width: 44px;
+    height: 44px;
+
+    background:
+        rgba(255, 255, 255, 0.15);
+}
+
+/* =========================================================
+   Home Bottom
+   ========================================================= */
+
+.home-bottom {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(360px, 0.95fr);
+
+    flex: 1;
+
+    min-height: 0;
+
+    gap: 28px;
+}
+
+/* =========================================================
+   Left Column
+   ========================================================= */
+
+.left-column {
+    display: flex;
+
+    flex-direction: column;
+
+    min-width: 0;
+    min-height: 0;
+
+    gap: 18px;
+}
+
+/* =========================================================
+   Weekly Weather
+   ※ カードなし
+   ========================================================= */
+
+.weekly-weather {
+    flex: 0 0 auto;
+
+    padding:
+        4px
+        2px
+        16px;
+}
+
+.section-title {
+    color: var(--text-secondary);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+}
+
+.weather-days {
+    display: grid;
+
+    grid-template-columns:
+        repeat(7, minmax(0, 1fr));
+
+    gap: 8px;
+
+    margin-top: 14px;
+}
+
+.weather-day {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 0;
+
+    padding:
+        10px
+        5px;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+}
+
+.weather-day strong {
+    margin: 8px 0;
+
+    color: var(--text);
+
+    font-size: 22px;
+
+    font-weight: 400;
+}
+
+.weather-day .high {
+    color: var(--high);
+
+    font-weight: 600;
+}
+
+.weather-day .low {
+    margin-top: 3px;
+
+    color: var(--low);
+
+    font-weight: 500;
+}
+
+/* =========================================================
+   Calendar
+   ========================================================= */
+
+.calendar-card {
+    flex: 1;
+
+    min-height: 0;
+
+    padding: 22px;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.calendar-content {
+    margin-top: 18px;
+}
+
+.calendar-date {
+    font-size: 30px;
+
+    font-weight: 500;
+}
+
+.calendar-event {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin-top: 18px;
+
+    padding-top: 16px;
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.09);
+
+    color: var(--text-secondary);
+
+    font-size: 15px;
+}
+
+.calendar-event span:first-child {
+    color: var(--text);
+
+    font-variant-numeric: tabular-nums;
+}
+
+/* =========================================================
+   News
+   ========================================================= */
+
+.news-card {
+    min-width: 0;
+    min-height: 0;
+
+    padding: 22px;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.news-list {
+    display: flex;
+
+    flex-direction: column;
+
+    margin-top: 12px;
+}
+
+.news-item {
+    display: flex;
+
+    align-items: baseline;
+
+    gap: 14px;
+
+    padding: 15px 0;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    color: var(--text);
+
+    font-size: 15px;
+
+    overflow: hidden;
+}
+
+.news-item:last-child {
+    border-bottom: 0;
+}
+
+.news-time {
+    flex: 0 0 auto;
+
+    color: var(--text-muted);
+
+    font-size: 12px;
+
+    font-variant-numeric: tabular-nums;
+}
+
+/* =========================================================
+   Other Pages
+   ========================================================= */
+
+.page:not(.home-page) {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.page:not(.home-page)[hidden] {
+    display: none;
+}
+
+.page:not(.home-page) h1 {
+    margin: 0;
+
+    font-size:
+        clamp(38px, 5vw, 64px);
+
+    font-weight: 300;
+
+    text-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* =========================================================
+   Settings
+   ※ 完全に背景なし
+   ※ カードなし
+   ※ 左上固定
+   ========================================================= */
+
+.settings-page {
+    display: block !important;
+
+    padding:
+        48px
+        56px
+        120px;
+
+    overflow-y: auto;
+}
+
+.settings-page h1 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-size:
+        clamp(38px, 4vw, 58px);
+
+    font-weight: 300;
+
+    line-height: 1.1;
+
+    text-align: left;
+}
+
+/* 設定項目 */
+.setting-item {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    width: min(760px, 100%);
+
+    min-height: 86px;
+
+    padding:
+        20px
+        0;
+
+    border-bottom:
+        1px solid
+        var(--line);
+
+    gap: 40px;
+}
+
+.settings-page h1 + .setting-item {
+    margin-top: 38px;
+
+    border-top:
+        1px solid
+        var(--line);
+}
+
+.setting-title {
+    color: var(--text);
+
+    font-size: 18px;
+
+    font-weight: 600;
+}
+
+.setting-description {
+    margin-top: 6px;
+
+    color: var(--text-muted);
+
+    font-size: 13px;
+}
+
+/* =========================================================
+   Language Select
+   ========================================================= */
+
+.setting-item select {
+    flex-shrink: 0;
+
+    min-width: 140px;
+
+    padding:
+        9px
+        13px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.15);
+
+    border-radius: 9px;
+
+    outline: none;
+
+    background:
+        rgba(255, 255, 255, 0.07);
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+.setting-item select:hover {
+    background:
+        rgba(255, 255, 255, 0.10);
+}
+
+.setting-item select:focus {
+    border-color:
+        rgba(255, 255, 255, 0.28);
+}
+
+.setting-item select option {
+    background: #151a21;
+
+    color: white;
+}
+
+/* =========================================================
+   Switch
+   ========================================================= */
+
+.switch {
+    position: relative;
+
+    display: block;
+
+    flex-shrink: 0;
+
+    width: 50px;
+    height: 28px;
+}
+
+.switch input {
+    position: absolute;
+
+    width: 0;
+    height: 0;
+
+    opacity: 0;
+}
+
+.slider {
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: 999px;
+
+    background:
+        rgba(255, 255, 255, 0.14);
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease;
+}
+
+.slider::before {
+    content: "";
+
+    position: absolute;
+
+    top: 3px;
+    left: 3px;
+
+    width: 22px;
+    height: 22px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    box-shadow:
+        0 2px 8px
+        rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.2s ease;
+}
+
+.switch input:checked + .slider {
+    background:
+        rgba(100, 160, 255, 0.72);
+}
+
+.switch input:checked + .slider::before {
+    transform: translateX(22px);
+}
+
+/* =========================================================
+   Bottom Navigation
+   ========================================================= */
+
+.bottom-nav {
+    position: fixed;
+
     left: 50%;
+    bottom: 18px;
+
+    transform: translateX(-50%);
+
+    z-index: 100;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 4px;
+
+    padding: 6px;
+
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(24, 31, 41, 0.66),
+            rgba(8, 12, 18, 0.50)
+        );
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.11);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0, 0, 0, 0.32),
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.05);
+
+    backdrop-filter:
+        blur(24px)
+        saturate(130%);
+
+    -webkit-backdrop-filter:
+        blur(24px)
+        saturate(130%);
+}
+
+.bottom-nav button {
+    padding:
+        10px
+        16px;
+
+    border: 0;
+
+    border-radius: 11px;
+
+    background: transparent;
+
+    color:
+        rgba(255, 255, 255, 0.56);
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        color 0.18s ease;
+}
+
+.bottom-nav button:hover {
+    color: white;
+
+    background:
+        rgba(255, 255, 255, 0.07);
+}
+
+.bottom-nav button.active {
+    color: white;
+
+    background:
+        rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.07);
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+@media (max-width: 1000px) {
+    .page {
+        padding-left: 26px;
+        padding-right: 26px;
+    }
+
+    .home-bottom {
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(300px, 0.9fr);
+
+        gap: 20px;
+    }
+
+    .music-card {
+        width: 260px;
+    }
+
+    .bottom-nav button {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .settings-page {
+        padding-left: 38px;
+        padding-right: 38px;
+    }
+}
+
+@media (max-width: 760px) {
+    body {
+        overflow: auto;
+    }
+
+    .page {
+        position: relative;
+
+        min-height: 100%;
+
+        padding:
+            24px
+            20px
+            110px;
+
+        overflow-y: auto;
+    }
+
+    .home-page {
+        min-height: 100%;
+
+        gap: 25px;
+    }
+
+    .home-top {
+        flex: none;
+
+        height: 330px;
+    }
+
+    .time-area {
+        top: 25px;
+    }
+
+    .clock {
+        font-size:
+            clamp(52px, 15vw, 86px);
+    }
+
+    .date {
+        font-size: 17px;
+    }
+
+    .weather-summary {
+        font-size: 16px;
+    }
+
+    .music-card {
+        top: auto;
+        right: 0;
+        bottom: 0;
+
+        width: min(100%, 300px);
+    }
+
+    .home-bottom {
+        display: flex;
+
+        flex-direction: column;
+
+        flex: none;
+
+        gap: 22px;
+    }
+
+    .left-column {
+        gap: 20px;
+    }
+
+    .weather-days {
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+    }
+
+    .calendar-card {
+        min-height: 180px;
+    }
+
+    .news-card {
+        min-height: 220px;
+    }
+
+    .settings-page {
+        padding:
+            30px
+            22px
+            110px;
+    }
+
+    .settings-page h1 {
+        margin-bottom: 0;
+    }
+
+    .setting-item {
+        min-height: 78px;
+
+        gap: 20px;
+    }
+
+    .bottom-nav {
+        max-width:
+            calc(100% - 20px);
+
+        overflow-x: auto;
+
+        justify-content: flex-start;
+
+        scrollbar-width: none;
+    }
+
+    .bottom-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .bottom-nav button {
+        flex-shrink: 0;
+
+        padding:
+            10px
+            13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .home-top {
+        height: 300px;
+    }
+
+    .music-card {
+        width: 100%;
+    }
+
+    .weather-days {
+        grid-template-columns:
+            repeat(4, 1fr);
+    }
+
+    .weather-day {
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+
+    .settings-page {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .settings-page h1 {
+        font-size: 38px;
+    }
+
+    .setting-item {
+        align-items: flex-start;
+    }
+
+    .setting-item select {
+        min-width: 110px;
+    }
+
+    .bottom-nav {
+        bottom: 10px;
+    }
 }
