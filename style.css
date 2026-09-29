@@ -1,0 +1,53 @@
+/* pages.js */
+.top-left {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.top-right {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.bottom-left {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+.bottom-right {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.left {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+}
+
+.right {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+}
+
+.top {
+    position: absolute;
+    top: 20px;
+}
+
+.bottom {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+}
